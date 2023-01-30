@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import br.com.treinaweb.twclientes.model.Cliente;
 import br.com.treinaweb.twclientes.repository.ClienteRepository;
@@ -49,4 +52,42 @@ public class ClienteController {
 
         return modelAndView;
     }
+
+    @GetMapping("/cadastrar")
+    public ModelAndView cadastrar(){
+        ModelAndView modelAndView = new ModelAndView("/cliente/cadastro");
+
+        modelAndView.addObject("cliente", new Cliente());
+
+        return modelAndView;
+    }
+
+    @PostMapping("/cadastrar")
+    public ModelAndView cadastrar(Cliente cliente){
+        ModelAndView modelAndView = new ModelAndView("redirect:/cliente");
+
+        clienteRepository.save(cliente);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/{id}/editar")
+    public ModelAndView editar(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("cliente/edicao");
+
+        Cliente cliente = clienteRepository.getOne(id);
+        modelAndView.addObject("cliente", cliente);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/{id}/editar")
+    public ModelAndView editar(Cliente cliente){
+        ModelAndView modelAndView = new ModelAndView("redirect:/cliente");
+
+        clienteRepository.save(cliente);
+
+        return modelAndView;
+    }
+
 }

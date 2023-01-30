@@ -1,6 +1,7 @@
 package br.com.treinaweb.twclientes.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table
@@ -20,8 +24,9 @@ public class Cliente {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, name = "data_nascimento")    
-    private Date dataNascimento;
+    @Column(nullable = false, name = "data_nascimento") 
+    @DateTimeFormat(iso = ISO.DATE)
+    private LocalDate dataNascimento;
 
     @Column(nullable =  false)
     private String profissao;
@@ -29,7 +34,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, Date dataNascimento, String profissao) {
+    public Cliente(Long id, String nome, LocalDate dataNascimento, String profissao) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -52,11 +57,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

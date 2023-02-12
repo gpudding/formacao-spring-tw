@@ -11,6 +11,9 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 
+<!-- <title th:if="${cliente.id != null}">Editar Cliente</title>
+<title th:if="${cliente.id == null}">Cadastrar Cliente</title> -->
+<title th:text="${cliente.id == null ? 'Spring Fundamentos - Cadastrar novo Cliente' : 'Spring Fundamentos - Editar Cliente'}"></title>
 <body>
     <!-- As a link -->
     <nav class="navbar bg-body-tertiary">
@@ -21,8 +24,10 @@
 
     <main class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <h1>Editar cliente</h1>
+            <!-- <div class="col-sm-12">
+                <h1 th:if="${cliente.id != null}">Editar Cliente</h1>
+                <h1 th:if="${cliente.id == null}">Cadastrar Cliente</h1> -->
+                <h1 th:text="${cliente.id == null ? 'Cadastrar novo Cliente' : 'Editar Cliente'}"></h1>
             </div>
         </div>
         <div class="row">

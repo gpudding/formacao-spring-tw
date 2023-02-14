@@ -3,9 +3,11 @@
         <a class="navbar-brand" th:href="@{/}">TwClientes</a>
         <form class="d-flex">
             <select class="form-select" me-2 name="lang">
-                <option selected disabled value>Selecione o idioma</option>
-                <option value="pt">Portugues</option>
-                <option value="en">Inglês</option>
+                <option disabled value>Selecione o idioma</option>
+                <option th:selected="${#locale.toString() == 'pt'}" value="pt">Portugues
+                </option>
+                <option th:selected="${#locale.toString() == 'en'}" value="en">Inglês
+                </option>
             </select>
             <button class="btn btn-outline-success" type="submit">Confirma</button>
         </form>

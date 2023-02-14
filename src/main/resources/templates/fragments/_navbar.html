@@ -1,5 +1,13 @@
 <nav th:fragment="nav" class="navbar bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/}">TwClientes</a>
+        <form class="d-flex">
+            <select class="form-select" me-2 name="lang">
+                <option selected disabled value>Selecione o idioma</option>
+                <option value="pt">Portugues</option>
+                <option value="en">Inglês</option>
+            </select>
+            <button class="btn btn-outline-success" type="submit">Confirma</button>
+        </form>
     </div>
 </nav>
